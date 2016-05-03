@@ -167,15 +167,23 @@
 </head>
 
 <body>
-		<div id='topMainBar'>
-		<h1>Place your order</h1>
+	<div class='verticalStripes'></div>
+
+
+
+	<div id='topMainBar'>
+
 	</div>
 
 	<div ng-app='myApp' id='overall_container'>
-		<a href="#/">Customers</a> | <a href="#/partial2">Orders</a> 
+		<a href="#/" class='pink'>Customers</a> | <a href="#/partial2" class='pink'>Orders</a> 
 		<!-- ng-view directive enables us to display various views -->
 		<div ng-view=""></div>
 	</div>
+
+	<footer>
+		<h5 align='center'>© Copyright 2016, CupyCakes</h5>
+	</footer>
 
 </body>
 </html>

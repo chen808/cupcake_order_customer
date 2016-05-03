@@ -21,7 +21,7 @@ module.exports = (function(){
 
 
 		createProduct: function(req, res){
-			console.log(req.name);
+			console.log(req.body);
 			Product.create({customer_name:req.body.name, product_name:req.body.product, quantity:req.body.quantity} , function(err, results){
 				if(err){
 					console.log(err);

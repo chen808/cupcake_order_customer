@@ -1,7 +1,7 @@
 <!-- customer.html -->
 
 <div ng-controller="CustomerController" layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
-
+	<h1>Add Customer</h1>
 	
 
 	<!-- Add customer here -->
@@ -11,7 +11,8 @@
 					<label>Title</label>
 					<input ng-model="newCustomer.name">
 				</md-input-container>
-				<md-button class="md-raised" ng-click="addCustomer()">Button</md-button>
+				<md-button class="custom_add_button" ng-click="addCustomer()">Add Customer</md-button>
+
 
 				<!-- checks to see if name is already in database -->
 				<div id="dup" ng-show="isDuplicate()">{{dup_msg}}</div>
@@ -21,23 +22,14 @@
 
 
 
-	
-		
-
-
-	
-
-
-
-
-
 	<!-- display customers and when it was created -->
+	<h1>Customer List</h1>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Customer Name</th>
-				<th>Created Date</th>
-				<th>Actions</th>
+				<th align='left'>Customer Name</th>
+				<th align='left'>Created Date</th>
+				<th align='left'>Actions</th>
 			</tr>
 		</thead>
 
@@ -52,7 +44,10 @@
 				<td>{{ x.created_at }}</td>
 				<!-- clicking delete calls the CONTROLLER deleteProduct method -->
 				<!-- <td><a href="#" ng-click="deleteCustomer(x._id)">Delete</td> -->
-				<td><input type='submit' value='Delete' ng-click="deleteCustomer(x._id)" >  </td>
+				<td><md-button class="custom_add_button" ng-click="deleteCustomer(x._id)">Delete</md-button></td>
+
+				
+
 			</tr>
 		</tbody>
 

@@ -1,5 +1,5 @@
 <!-- orders.html -->
-<div ng-controller="OrderController" class="md-padding selectdemoOptionGroups" ng-cloak="" >
+<div ng-controller="OrderController" class="selectdemoOptionGroups" ng-cloak="" >
 	<h1>Add a new order</h1>
 
 	<div layout='row'>
@@ -9,7 +9,7 @@
 				<md-option ng-repeat="i in customers" value="{{ i.name }}">{{ i.name }}</md-option>
 			</md-select>
 		</md-input-container> 
-		
+
 		<!-- Product -->
 		<md-input-container>
 			<md-select ng-model="newAssign.product" placeholder="Choose a product">
@@ -30,13 +30,18 @@
 			</md-select>
 		</md-input-container> 
 
-		<md-button class="custom_add_button" ng-click="addOrder()">Add the order</md-button>
+
 	</div>
+
+	<md-datepicker ng-model="myDate" md-placeholder="Enter Pickup Date" id='datepicker'></md-datepicker>
+
+	<md-button class="custom_add_button" ng-click="addOrder()">Add the order</md-button>
 
 	<!-- ////////////////////////////////////////////////////// -->
 
 
-
+	<br>
+	<br>
 
 	<!-- looping through users.  this is being called from controller > getUsers -->
 	<input type="text" ng-model="filter_name" placeholder="filter by customer name">
@@ -45,10 +50,10 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Customer Name</th>
-				<th>Product</th>
-				<th>Quantity</th>
-				<th>Date</th>
+				<th align='left'>Customer Name</th>
+				<th align='left'>Product</th>
+				<th align='left'>Quantity</th>
+				<th align='left'>Date</th>
 			</tr>
 		</thead>
 

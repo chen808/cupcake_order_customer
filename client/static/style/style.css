@@ -1,23 +1,66 @@
 /* Google Fonts */
 @import url(https://fonts.googleapis.com/css?family=Sansita+One);
-
+* {
+	padding: 0px;
+	margin: 0px;
+}
 h1{
 	font-family: 'Sansita One', cursive;
+	margin: 20px 0px;
+}
+table{
+	margin-top: 20px;
+}
+
+.datebox{
+	width: 100px;
+}
+
+a.pink{
+	color: #ff69b4;
+}
+th{
+	padding-bottom: 20px;
+}
+
+td{
+	padding-right: 100px;
+	padding-bottom: 10px;
 }
 
 #overall_container{
-	padding: 20px;
+	padding: 40px;
 }
 
 #topMainBar{
-	background-color: orange;
+	background-color: #734A12;
 	height: 300px;
 }
 
 .custom_add_button{
-	background-color: orange;
+	background-color: #ff69b4;
 	color: white;
 	height: 30px;
 	margin-left: 20px;
 	margin-top: 10px;
 }
+
+.verticalStripes {	
+	background-color: #ff69b4;
+	background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,.5) 50%);
+	background-size: 50px 50px;
+	height: 40px;
+}
+
+footer{
+	background-color: black;
+	height: 100px;
+	color: white;
+	padding-top: 20px;
+}
+
+
+
+
+
+
