@@ -37,6 +37,12 @@ td{
 	height: 300px;
 }
 
+#topMainBar img{
+	margin-top: 25px;
+	margin-left: 41%;
+	margin-right: 41%;
+}
+
 .custom_add_button{
 	background-color: #ff69b4;
 	color: white;
