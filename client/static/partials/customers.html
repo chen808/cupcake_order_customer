@@ -41,7 +41,7 @@
 			<!-- looping through users.  this is being called from controller > getUsers -->
 			<tr ng-repeat="x in customers | orderBy:'created_at' | filter:filter_name">
 				<td>{{ x.name }}</td>
-				<td>{{ x.created_at }}</td>
+				<td>{{ x.created_at | date:'MM/dd/yyyy' }}</td>
 				<!-- clicking delete calls the CONTROLLER deleteProduct method -->
 				<!-- <td><a href="#" ng-click="deleteCustomer(x._id)">Delete</td> -->
 				<td><md-button class="custom_add_button" ng-click="deleteCustomer(x._id)">Delete</md-button></td>

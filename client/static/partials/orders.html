@@ -12,11 +12,11 @@
 
 		<!-- Product -->
 		<md-input-container>
-			<md-select ng-model="newAssign.product" placeholder="Choose a product">
-				<md-option value="iPhone">iPhone</md-option>
-				<md-option value="Xbox One">Xbox One</md-option>
-				<md-option value="PlayStation 4">PlayStation 4</md-option>
-				<md-option value="Nintendo NX">Nintendo NX</md-option>
+			<md-select ng-model="newAssign.product" placeholder="Choose a flavor">
+				<md-option value="Green Tea">Green Tea Flavor</md-option>
+				<md-option value="Strawberry">Strawberry</md-option>
+				<md-option value="Blueberry">Blueberry</md-option>
+				<md-option value="Banana">Banana</md-option>
 			</md-select>
 		</md-input-container> 
 
@@ -43,6 +43,7 @@
 	<br>
 	<br>
 
+	<h1>Current Order List</h1>
 	<!-- looping through users.  this is being called from controller > getUsers -->
 	<input type="text" ng-model="filter_name" placeholder="filter by customer name">
 
@@ -51,7 +52,7 @@
 		<thead>
 			<tr>
 				<th align='left'>Customer Name</th>
-				<th align='left'>Product</th>
+				<th align='left'>Flavor</th>
 				<th align='left'>Quantity</th>
 				<th align='left'>Date</th>
 			</tr>
@@ -62,7 +63,7 @@
 				<td>{{ x.customer_name }}</td>
 				<td>{{ x.product_name }}</td>
 				<td>{{ x.quantity }}</td>
-				<td>{{ x.date }}</td>
+				<td>{{ x.date | date:'MM/dd/yyyy'}}</td>
 			</tr>
 		</tbody>
 	</table>

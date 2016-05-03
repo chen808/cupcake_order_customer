@@ -62,7 +62,10 @@ footer{
 	background-color: black;
 	height: 100px;
 	color: white;
-	padding-top: 20px;
+}
+
+footer h6{
+	padding-top: 60px;
 }
 
 
