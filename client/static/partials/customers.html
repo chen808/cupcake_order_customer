@@ -1,0 +1,62 @@
+<!-- customer.html -->
+
+<div ng-controller="CustomerController" layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
+
+	
+
+	<!-- Add customer here -->
+		<md-content layout-gt-sm="row" layout-padding="">
+			<div>
+				<md-input-container>
+					<label>Title</label>
+					<input ng-model="newCustomer.name">
+				</md-input-container>
+				<md-button class="md-raised" ng-click="addCustomer()">Button</md-button>
+
+				<!-- checks to see if name is already in database -->
+				<div id="dup" ng-show="isDuplicate()">{{dup_msg}}</div>
+
+			</div>
+		</md-content>
+
+
+
+	
+		
+
+
+	
+
+
+
+
+
+	<!-- display customers and when it was created -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Customer Name</th>
+				<th>Created Date</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+
+		<!-- Filter out names -->
+		<h3>Search names: <input type="text" ng-model="filter_name">  </h3>
+
+
+		<tbody>
+			<!-- looping through users.  this is being called from controller > getUsers -->
+			<tr ng-repeat="x in customers | orderBy:'created_at' | filter:filter_name">
+				<td>{{ x.name }}</td>
+				<td>{{ x.created_at }}</td>
+				<!-- clicking delete calls the CONTROLLER deleteProduct method -->
+				<!-- <td><a href="#" ng-click="deleteCustomer(x._id)">Delete</td> -->
+				<td><input type='submit' value='Delete' ng-click="deleteCustomer(x._id)" >  </td>
+			</tr>
+		</tbody>
+
+
+	</table>
+
+</div>

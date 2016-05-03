@@ -1,0 +1,190 @@
+<html ng-app='myApp'>
+<head>
+	<title>Customers and Orders</title>
+
+	<!-- Angular Material style sheet -->
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+
+	<!-- Angular CDN -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+	<!-- Angular Material Library -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
+    <!-- CSS External Sheet -->
+    <link rel="stylesheet" type="text/css" href="static/style/style.css">
+
+	<!-- Angular Code -->
+	<script type="text/javascript">
+
+		// inject the ngRoute, ngMaterial dependency in the module
+		var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
+
+
+		// ROUTES ==================================================
+		myApp.config(function ($routeProvider){
+			$routeProvider
+		        .when('/',{
+		            templateUrl: '/static/partials/customers.html'
+		        })
+		        .when('/partial2',{
+		            templateUrl: '/static/partials/orders.html'
+		        })
+		        .otherwise({
+		          redirectTo: '/'
+		        });
+		});
+
+
+
+		// FACTORY (customer) =================================================
+		myApp.factory('CustomerFactory', function($http){
+
+			// will be storing and updating infomation into following variables
+			var factory = {};
+			//var customers = [];
+			var orders = {};
+
+			factory.index = function(callback){
+				$http.get('/customers').success(function(output){
+					customers = output;
+					callback(customers);
+				})
+			}
+
+			factory.create = function(info, callback){
+				console.log(info);
+				$http.post('/customersAdd', info).success(function(output){
+					customers.push({name:info.name, created_at:new Date() });
+					// callback(output);
+				})
+			}
+
+			factory.deletePerson = function(delete_id, callback){
+				$http.get('/remove/' + delete_id).success(function(output){
+					customers = output;
+					callback(customers);
+				})
+			}
+
+			factory.createOrder = function(info, callback){
+				$http.post('/createOrder', info).success(function(output){
+					orders.push({customer_name:info.name, product_name:info.product, quantity:info.quantity, date: new Date() });
+				})
+			}
+
+			factory.getOrders = function(callback){
+				$http.get('/getOrders').success(function(output){
+					console.log(output);
+					orders = output;
+					callback(orders);
+				})
+			}
+
+			return factory;
+		}) // end Customer factory
+
+
+
+
+		// CONTROLLER (customer)=====================================
+		myApp.controller('CustomerController', function($scope, CustomerFactory){
+
+			// initialize empty array so $scope.users maintains a consistent data type
+			$scope.customers = [];
+
+			// get customers
+			CustomerFactory.index(function(data){
+				console.log(data);
+				$scope.customers = data;
+			})
+
+			$scope.addCustomer = function(){
+				CustomerFactory.create($scope.newCustomer, function(){
+					$scope.customers = CustomerFactory.index;
+
+				})
+				$scope.newCustomer = {}; // clear the form
+			}
+
+			$scope.deleteCustomer = function(x){
+				CustomerFactory.deletePerson(x, function(data){});
+
+				CustomerFactory.index(function(data){
+					console.log(data);
+					$scope.customers = data;
+				})
+			}
+
+			// $scope.isDuplicate = function(customer){
+			// 	for(var i=0; i<$scope.customers.length; i++){
+			// 		if($scope.newCustomer !== undefined){
+			// 			if($scope.newCustomer.name == $scope.customers[i].name){
+			// 				$scope.dup_msg = "name is already used!"
+			// 				return true;
+			// 			}
+			// 		}
+			// 	}
+			// 	return false;
+			// }
+
+		}); // end customerController 
+
+
+
+		// CONTROLLER (orders)=====================================
+		myApp.controller('OrderController', function($scope, CustomerFactory){
+
+			
+
+			// get customers
+			CustomerFactory.index(function(data){
+				$scope.customers = data;
+			})
+
+			// get all orders
+			CustomerFactory.getOrders(function(data){
+				$scope.allOrders = data;
+			})
+
+			$scope.addOrder = function(){
+				console.log($scope.newAssign);
+
+				CustomerFactory.createOrder($scope.newAssign, function(){
+					$scope.customers = CustomerFactory.index;
+				})
+				$scope.newAssign = {}; // clear the form
+			}
+
+		}) // end OrderController
+
+	</script>
+
+</head>
+
+<body>
+		<div id='topMainBar'>
+		<h1>Place your order</h1>
+	</div>
+
+	<div ng-app='myApp' id='overall_container'>
+		<a href="#/">Customers</a> | <a href="#/partial2">Orders</a> 
+		<!-- ng-view directive enables us to display various views -->
+		<div ng-view=""></div>
+	</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

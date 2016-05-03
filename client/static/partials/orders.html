@@ -1,0 +1,65 @@
+<!-- orders.html -->
+<div ng-controller="OrderController" class="md-padding selectdemoOptionGroups" ng-cloak="" >
+	<h1>Add a new order</h1>
+
+	<div layout='row'>
+		<!-- Customer -->
+		<md-input-container style="margin-right: 10px;">
+			<md-select ng-model="newAssign.name" placeholder="Choose a customer">
+				<md-option ng-repeat="i in customers" value="{{ i.name }}">{{ i.name }}</md-option>
+			</md-select>
+		</md-input-container> 
+		
+		<!-- Product -->
+		<md-input-container>
+			<md-select ng-model="newAssign.product" placeholder="Choose a product">
+				<md-option value="iPhone">iPhone</md-option>
+				<md-option value="Xbox One">Xbox One</md-option>
+				<md-option value="PlayStation 4">PlayStation 4</md-option>
+				<md-option value="Nintendo NX">Nintendo NX</md-option>
+			</md-select>
+		</md-input-container> 
+
+		<!-- Quantity -->
+		<md-input-container>
+			<md-select ng-model="newAssign.quantity" placeholder="Choose a Quantity">
+				<md-option value="1">1</md-option>
+				<md-option value="2">2</md-option>
+				<md-option value="3">3</md-option>
+				<md-option value="4">4</md-option>
+			</md-select>
+		</md-input-container> 
+
+		<md-button class="custom_add_button" ng-click="addOrder()">Add the order</md-button>
+	</div>
+
+	<!-- ////////////////////////////////////////////////////// -->
+
+
+
+
+	<!-- looping through users.  this is being called from controller > getUsers -->
+	<input type="text" ng-model="filter_name" placeholder="filter by customer name">
+
+	<!-- Display the orders -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Customer Name</th>
+				<th>Product</th>
+				<th>Quantity</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat="x in allOrders | orderBy:'Product_name' | filter:filter_name">
+				<td>{{ x.customer_name }}</td>
+				<td>{{ x.product_name }}</td>
+				<td>{{ x.quantity }}</td>
+				<td>{{ x.date }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

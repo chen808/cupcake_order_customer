@@ -1,0 +1,23 @@
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Sansita+One);
+
+h1{
+	font-family: 'Sansita One', cursive;
+}
+
+#overall_container{
+	padding: 20px;
+}
+
+#topMainBar{
+	background-color: orange;
+	height: 300px;
+}
+
+.custom_add_button{
+	background-color: orange;
+	color: white;
+	height: 30px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
